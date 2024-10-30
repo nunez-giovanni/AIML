@@ -24,9 +24,13 @@ def tokenize_raw_text():
 	split_text = re.split(r'([,.:;?_!"()\']|--|\s)', get_raw_text())
 	preprocessed_words = [item.strip() for item in split_text if item.strip()]
 
-	unique_words_sroted = sorted(set(preprocessed_words))
+	unique_words_sorted = sorted(set(preprocessed_words))
 	
-	return unique_words_sroted;
+	#  extend our list of words with a list of special tokens to represent endoftext and unknown words.
+	unique_words_sorted.extend(["<|endoftext|>", "<|unk|>"])
+	
+	
+	return unique_words_sorted;
 	
 	
 	
@@ -54,7 +58,7 @@ tokenizer = SimpleTokenizerV1(vocab)
 
 # tokenize new text
 test_text = """"It's the last he painted, you know," 
-		Mrs. Gisburn said with pardonable pride."""
+		Mrs. Gisburn said with pardonable pride gio.<|endoftext|>"""
 
 ids = tokenizer.encode(test_text)
 print(ids)

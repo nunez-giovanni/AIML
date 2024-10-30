@@ -16,6 +16,10 @@ class SimpleTokenizerV1:
 			item.strip() for item in preprocessed if item.strip()
 		]
 		
+		# handle unknown words
+		preprocessed = [item if item in self.str_to_int            
+					else "<|unk|>" for item in preprocessed]
+		
 		# simply reads from map -> matches the unique string and grabs the unique integer for it 
 		ids = [self.str_to_int[s] for s in preprocessed]
 		
@@ -26,7 +30,7 @@ class SimpleTokenizerV1:
 		# simply reads from the map -> matches the int and grabs the unique word its mapped to
 		text = " ".join([self.int_to_str[i] for i in ids])
 		
-		text = re.sub(r'\s+([,.?!"()\'])', r'\1', text) 
+		text = re.sub(r'\s+([,.:;?!"()\'])', r'\1', text)
 		return text
 	
 	
