@@ -14,15 +14,15 @@ text = (
 	"of someunknownplace"
 )
 
-# Encode text to token
+# Encode text to token_id
 # explicitly tell tokenizer what special tags to look out for
-integer = tokenizer.encode(text, allowed_special={"<|endoftext|>"})
+token_id = tokenizer.encode(text, allowed_special={"<|endoftext|>"})
 
 
-print(integer)
+print(token_id)
 
 
 # convert tokens back into text
 
-token_back_to_text = tokenizer.decode(integer)
+token_back_to_text = tokenizer.decode(token_id)
 print(token_back_to_text)

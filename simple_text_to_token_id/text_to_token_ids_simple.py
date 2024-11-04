@@ -4,7 +4,6 @@ import re
 from SimpleTokenizerV1 import SimpleTokenizerV1
 
 
-
 def get_raw_text():
 	""" 1. Read Raw file """
 	
